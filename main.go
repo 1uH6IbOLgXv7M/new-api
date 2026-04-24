@@ -38,7 +38,8 @@ func main() {
 	model.InitOptionMap()
 
 	// Set Gin mode based on environment
-	if os.Getenv("GIN_MODE") != "debug" {
+	// Default to debug mode for local development; set GIN_MODE=release in production
+	if os.Getenv("GIN_MODE") == "release" {
 		gin.SetMode(gin.ReleaseMode)
 	}
 
