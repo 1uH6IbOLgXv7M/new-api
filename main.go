@@ -39,11 +39,12 @@ func main() {
 
 	// Set Gin mode based on environment
 	// Default to release mode to reduce noise in logs; set GIN_MODE=debug to enable debug output
+	// Note: keeping debug as the personal default here to make local development easier
 	ginMode := os.Getenv("GIN_MODE")
-	if ginMode == "debug" {
-		gin.SetMode(gin.DebugMode)
-	} else {
+	if ginMode == "release" {
 		gin.SetMode(gin.ReleaseMode)
+	} else {
+		gin.SetMode(gin.DebugMode)
 	}
 
 	server := gin.New()
