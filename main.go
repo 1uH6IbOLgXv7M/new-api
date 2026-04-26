@@ -37,14 +37,13 @@ func main() {
 	// Initialize options from database
 	model.InitOptionMap()
 
-	// Set Gin mode based on environment
-	// Default to release mode to reduce noise in logs; set GIN_MODE=debug to enable debug output
-	// Note: keeping debug as the personal default here to make local development easier
+	// Set Gin mode based on environment.
+	// Defaulting to release mode here to keep logs clean; use GIN_MODE=debug locally when needed.
 	ginMode := os.Getenv("GIN_MODE")
-	if ginMode == "release" {
-		gin.SetMode(gin.ReleaseMode)
-	} else {
+	if ginMode == "debug" {
 		gin.SetMode(gin.DebugMode)
+	} else {
+		gin.SetMode(gin.ReleaseMode)
 	}
 
 	server := gin.New()
