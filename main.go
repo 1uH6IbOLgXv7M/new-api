@@ -38,12 +38,12 @@ func main() {
 	model.InitOptionMap()
 
 	// Set Gin mode based on environment.
-	// Default to release mode for better performance; set GIN_MODE=debug for local development.
+	// Default to debug mode locally for easier development; set GIN_MODE=release for production.
 	ginMode := os.Getenv("GIN_MODE")
-	if ginMode == "debug" {
-		gin.SetMode(gin.DebugMode)
-	} else {
+	if ginMode == "release" {
 		gin.SetMode(gin.ReleaseMode)
+	} else {
+		gin.SetMode(gin.DebugMode)
 	}
 
 	server := gin.New()
