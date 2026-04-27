@@ -59,6 +59,12 @@ func main() {
 		port = strconv.Itoa(*common.Port)
 	}
 
+	// Validate that port is a reasonable number before starting
+	portNum, err := strconv.Atoi(port)
+	if err != nil || portNum < 1 || portNum > 65535 {
+		common.FatalLog(fmt.Sprintf("invalid port number: %s", port))
+	}
+
 	common.SysLog(fmt.Sprintf("New API is running on port %s", port))
 
 	if err := server.Run(":" + port); err != nil {
